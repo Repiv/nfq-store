@@ -16,7 +16,7 @@ class OrderRepository extends EntityRepository
         }
         
         if($term) {
-            $qb->where('o.name = :term OR o.email = :term OR o.total = :term')->setParameter('term', $term);
+            $qb->where('o.name LIKE :term OR o.email LIKE :term OR o.total LIKE :term OR o.address LIKE :term')->setParameter('term', '%' . $term . '%');
         }
         
         switch ($sort) {
