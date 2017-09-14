@@ -1,0 +1,44 @@
+homepage:
+    title: 'Choose the products you want'
+menu:
+    products: 'Store'
+    orders: 'Admin'
+order:
+    title: 'Enter your data'
+    submit: 'Order'
+    place: 'Place an order'
+    form:
+        name: 'Name *'
+        email: 'E-mail *'
+        address: 'Address *'
+        phone: 'Phone'
+        comment: 'Comment'
+    created: 'Your order was successfully placed.'
+    index:
+        title: 'Orders'
+        show: 'Show'
+        empty: 'No results found'
+        list:
+            created: 'Created'
+            name: 'Name'
+            email: 'Email'
+            total: 'Total'
+            actions: 'Actions'
+    show:
+        title: 'Order'
+        back: 'Back to list'
+        list:
+            created: 'Created'
+            name: 'Name'
+            total: 'Total'
+            address: 'Address'
+            email: 'Email'
+            phone: 'Phone'
+            comment: 'Comment'
+            actions: 'Actions'
+search:
+    form:
+        term: 'Search'
+        submit: 'Search'
+site:
+    copyrights: '© All rights reserved'

@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project-private xmlns="http://www.netbeans.org/ns/project-private/1">
+    <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
+    <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
+        <group>
+            <file>file:/F:/code/nfq-shop/src/AppBundle/DataFixtures/ORM/Fixtures.php</file>
+            <file>file:/F:/code/nfq-shop/src/AppBundle/Entity/Product.php</file>
+            <file>file:/F:/code/nfq-shop/src/AppBundle/Controller/DefaultController.php</file>
+            <file>file:/F:/code/nfq-shop/src/AppBundle/Entity/Order.php</file>
+            <file>file:/F:/code/nfq-shop/app/Resources/views/default/index.html.twig</file>
+            <file>file:/F:/code/nfq-shop/web/scss/variables.scss</file>
+            <file>file:/F:/code/nfq-shop/src/AppBundle/Form/OrderType.php</file>
+            <file>file:/F:/code/nfq-shop/app/Resources/translations/messages.en.yml</file>
+            <file>file:/F:/code/nfq-shop/src/AppBundle/Controller/OrderController.php</file>
+            <file>file:/F:/code/nfq-shop/web/scss/styles.scss</file>
+            <file>file:/F:/code/nfq-shop/web/js/scripts.js</file>
+        </group>
+    </open-files>
+</project-private>

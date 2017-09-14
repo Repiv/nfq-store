@@ -1,0 +1,56 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="title">{{ 'order.show.title'|trans }} - {{ order.id }} </h1>
+
+                <a class="btn btn-primary float-right" href="{{ path('order_index') }}">
+                    {{ 'order.show.back'|trans }}
+                </a>
+                
+                <table class="table table-responsive">
+                    <tbody>
+                        <tr>
+                            <th>{{ 'order.show.list.created'|trans }}</th>
+                            <td>{% if order.created %}{{ order.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'order.show.list.total'|trans }}</th>
+                            <td>{{ order.total|number_format(2, '.', '') }}€</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'order.show.list.name'|trans }}</th>
+                            <td>{{ order.name }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'order.show.list.email'|trans }}</th>
+                            <td>{{ order.email }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'order.show.list.address'|trans }}</th>
+                            <td>{{ order.address }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'order.show.list.phone'|trans }}</th>
+                            <td>{{ order.phone }}</td>
+                        </tr>
+                        <tr>
+                            <th>{{ 'order.show.list.comment'|trans }}</th>
+                            <td>{{ order.comment }}</td>
+                        </tr>
+                    </tbody>
+                </table>
+                        
+                <a class="btn btn-primary float-right" href="{{ path('order_index') }}">
+                    {{ 'order.show.back'|trans }}
+                </a>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block navigation %}
+    {{ include('default/navigation.html.twig', {'active': 'admin'}) }}
+{% endblock %}

@@ -1,0 +1,65 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="title">{{ 'homepage.title'|trans }}</h1>
+            </div>
+        </div>
+        <div class="row" id="products">
+            {% for product in products %}
+                <div class="col-6 col-md-4 col-lg-3 col-xl-2">
+                    <div class="product" data-id="{{ product.id }}">
+                        <img class="img-fluid" src="{{ asset('/img/product/' ~ product.image) | imagine_filter('thumb') }}" alt="{{ product.name }}"/>
+                        <div class="product-data">
+                            <h3>
+                                {{ product.name }}
+                            </h3>
+                            <div class="price">
+                                {{ product.price|number_format(2, '.', '') }}€
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+
+    <div id="order-form-wrap">
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <button type="button" class="btn btn-primary btn-block" data-toggle="modal" data-target="#orderModal">
+                        {{ 'order.place'|trans }}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="orderModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog" role="document">
+            <div class="modal-content">
+                <div class="modal-body">
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                    {{ form_start(form, {attr: {id: 'order-form'}}) }}
+                        <h3>{{ 'order.title'|trans }}</h3>
+                        <div class="hidden">
+                            {{ form_row(form.products) }}
+                        </div>
+                        {{ form_widget(form) }}
+                        <div id="order-form-total"></div>
+                        <input class="btn btn-primary btn-block" id="order-form-submit" type="submit" value="{{ 'order.submit'|trans }}" />
+                    {{ form_end(form) }}
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
+
+{% block javascripts %}
+    <script src="{{ asset('js/jquery.validate.min.js') }}"></script>
+{% endblock %}

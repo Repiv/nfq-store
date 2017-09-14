@@ -1,0 +1,144 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <div class="container">
+        <div class="row">
+            <div class="col">
+                <h1 class="title">{{ 'order.index.title'|trans }}</h1>
+            </div>
+        </div>
+            
+        <div class="row">
+            <div class="col-12 col-md-8 col-lg-6">
+                {{ form_start(form, {attr: {id: 'search-form'}}) }}
+                    <div class="row">
+                        <div class="col-12 col-md-6">
+                            {{ form_widget(form.term) }}
+                        </div>
+                        <div class="col-12 col-md-6">
+                            <input class="btn btn-primary btn-block" type="submit" value="{{ 'search.form.submit'|trans }}" />
+                        </div>
+                    </div>
+                    {{ form_rest(form) }}
+                {{ form_end(form) }}
+            </div>
+        </div>
+            
+        <div class="row">
+            <div class="col">        
+                {% if orders %}
+                    <table class="table table-responsive table-striped">
+                        <thead>
+                            <tr>
+                                <th>
+                                    <a href="?page={{ page }}&sort=created&ord={% if sort == 'created' and order == 'desc' %}asc{% else %}desc{% endif %}">
+                                        {{ 'order.index.list.created'|trans }}
+
+                                        {% if sort == 'created' %}
+                                            {% if order == 'desc' %}
+                                                <img src="{{ asset('img/sort-down.png') }}" alt="asc"/>
+                                            {% else %}
+                                                <img src="{{ asset('img/sort-up.png') }}" alt="desc"/>
+                                            {% endif %}
+                                        {% endif %}
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="?page={{ page }}&sort=name&ord={% if sort == 'name' and order == 'desc' %}asc{% else %}desc{% endif %}">
+                                        {{ 'order.index.list.name'|trans }}
+
+                                        {% if sort == 'name' %}
+                                            {% if order == 'desc' %}
+                                                <img src="{{ asset('img/sort-down.png') }}" alt="asc"/>
+                                            {% else %}
+                                                <img src="{{ asset('img/sort-up.png') }}" alt="desc"/>
+                                            {% endif %}
+                                        {% endif %}
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="?page={{ page }}&sort=email&ord={% if sort == 'email' and order == 'desc' %}asc{% else %}desc{% endif %}">
+                                        {{ 'order.index.list.email'|trans }}
+
+                                        {% if sort == 'email' %}
+                                            {% if order == 'desc' %}
+                                                <img src="{{ asset('img/sort-down.png') }}" alt="asc"/>
+                                            {% else %}
+                                                <img src="{{ asset('img/sort-up.png') }}" alt="desc"/>
+                                            {% endif %}
+                                        {% endif %}
+                                    </a>
+                                </th>
+                                <th>
+                                    <a href="?page={{ page }}&sort=total&ord={% if sort == 'total' and order == 'desc' %}asc{% else %}desc{% endif %}">
+                                        {{ 'order.index.list.total'|trans }}
+
+                                        {% if sort == 'total' %}
+                                            {% if order == 'desc' %}
+                                                <img src="{{ asset('img/sort-down.png') }}" alt="asc"/>
+                                            {% else %}
+                                                <img src="{{ asset('img/sort-up.png') }}" alt="desc"/>
+                                            {% endif %}
+                                        {% endif %}
+                                    </a>
+                                </th>
+                                <th class="text-right">{{ 'order.index.list.actions'|trans }}</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for order in orders %}
+                                <tr>
+                                    <td>{% if order.created %}{{ order.created|date('Y-m-d H:i:s') }}{% endif %}</td>
+                                    <td>{{ order.name }}</td>
+                                    <td>{{ order.email }}</td>
+                                    <td>{{ order.total|number_format(2, '.', '') }}€</td>
+                                    <td class="text-right">
+                                        <a class="btn btn-primary" href="{{ path('order_show', { 'id': order.id }) }}">{{ 'order.index.show'|trans }}</a>
+                                    </td>
+                                </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                {% else %}
+                    <div class="alert alert-info">
+                        {{ 'order.index.empty'|trans }}
+                    </div>
+                {% endif %}
+            </div>
+        </div>
+        
+        {% if pages > 1 %}
+            <div class="row">
+                <div class="col">
+                    <nav>
+                        <ul class="pagination justify-content-center">
+                            {% if page != 1 %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page - 1 }}" aria-label="Previous">
+                                        <span aria-hidden="true">&laquo;</span>
+                                        <span class="sr-only">Previous</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                            {% for i in 1..pages %}
+                                <li class="page-item{% if page == i %} active{% endif %}"><a class="page-link" href="?page={{ i }}">{{ i }}</a></li>
+                            {% endfor %}
+                            {% if page != pages %}
+                                <li class="page-item">
+                                    <a class="page-link" href="?page={{ page + 1 }}" aria-label="Next">
+                                        <span aria-hidden="true">&raquo;</span>
+                                        <span class="sr-only">Next</span>
+                                    </a>
+                                </li>
+                            {% endif %}
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        {% endif %}
+    </div>
+{% endblock %}
+
+{% block navigation %}
+    {{ include('default/navigation.html.twig', {'active': 'admin'}) }}
+{% endblock %}
