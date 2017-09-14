@@ -35,6 +35,7 @@ order:
             email: 'Email'
             phone: 'Phone'
             comment: 'Comment'
+            products: 'Products'
             actions: 'Actions'
 search:
     form:

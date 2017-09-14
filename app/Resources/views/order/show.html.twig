@@ -40,6 +40,21 @@
                             <th>{{ 'order.show.list.comment'|trans }}</th>
                             <td>{{ order.comment }}</td>
                         </tr>
+                        <tr>
+                            <th>{{ 'order.show.list.products'|trans }}</th>
+                            <td>
+                                {% if order.products %}
+                                    <ul class="list-group">
+                                        {% for product in order.products %}
+                                            <li class="list-group-item">
+                                                {{ product.name }}
+                                                <span class="badge badge-info badge-pill float-right">{{ product.price|number_format(2, '.', '') }}€</span>
+                                            </li>
+                                        {% endfor %}
+                                    </ul>
+                                {% endif %}
+                            </td>
+                        </tr>
                     </tbody>
                 </table>
                         
